@@ -1,11 +1,12 @@
-import { LoaderPinwheel } from "lucide-react";
+import Loader from "@/components/Loader";
+import MeetingPage from "@/components/MeetingPage";
 import React from "react";
 
 const Meeting = async ({ params }: { params: Promise<{ id: string }> }) => {
   const { id } = await params;
-  console.log(id);
-  if (!id) return <LoaderPinwheel />;
-  return <div>Meeting {id}</div>;
+
+  if (!id) return <Loader />;
+  return <MeetingPage id={id} />;
 };
 
 export default Meeting;

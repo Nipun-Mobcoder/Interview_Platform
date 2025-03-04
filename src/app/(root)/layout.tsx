@@ -1,4 +1,6 @@
+import ProtectedRoutes from "@/components/ProtectedRoutes";
 import React from "react";
+import { StreamVideoProvider } from "../../../providers/StreamClientProvider";
 
 const RootLayout = ({
   children,
@@ -7,7 +9,9 @@ const RootLayout = ({
 }>) => {
   return (
     <main>
-      {children}
+      <ProtectedRoutes>
+        <StreamVideoProvider>{children}</StreamVideoProvider>
+      </ProtectedRoutes>
     </main>
   );
 };
