@@ -63,11 +63,11 @@ const CallList = ({ type }: { type: "upcoming" | "recordings" | "ended" }) => {
   const noCallsMessage = getNoCallsMessage();
 
   return (
-    <div className="grid-cols-1 gap-5 xl:grid-cols-2">
+    <div className="grid grid-cols-1 gap-5 xl:grid-cols-2">
       {calls && calls.length > 0 ? (
         calls.map((meeting: Call | CallRecording) => (
           <MeetingCard
-            key={(meeting as Call).id}
+            key={(meeting as Call).id || (meeting as CallRecording).url}
             icon={
               type === "ended"
                 ? "/icons/previous.svg"

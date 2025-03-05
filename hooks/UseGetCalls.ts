@@ -11,7 +11,7 @@ export const useGetCalls = () => {
 
   useEffect(() => {
     const loadCalls = async () => {
-      if (!client || user) return;
+      if (!client || !user) return;
       setIsLoading(true);
 
       try {
@@ -34,7 +34,8 @@ export const useGetCalls = () => {
       }
     };
     loadCalls();
-  }, [client, user, user.id]);
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [client, user.id]);
 
   const now = new Date();
 

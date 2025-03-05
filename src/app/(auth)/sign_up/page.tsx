@@ -2,7 +2,7 @@ import React from 'react'
 
 const page = () => {
   return (
-    <div>page</div>
+    <div>For user to sign up they should login through admin panel.</div>
   )
 }
 

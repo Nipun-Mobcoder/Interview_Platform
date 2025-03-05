@@ -29,7 +29,7 @@ const MeetingCard = ({
   buttonText,
 }: MeetingCardProps) => {
   return (
-    <section className="flex min-h-[258px] w-full flex-col justify-between rounded-[14px] bg-dark-1 px-5 py-8 xl:max-w-[568px]">
+    <section className="flex min-h-[258px] w-full flex-col justify-between rounded-[14px] bg-[#1C1F2E] px-5 py-8 xl:max-w-[590px]">
       <article className="flex flex-col gap-5">
         <Image src={icon} alt="upcoming" width={28} height={28} />
         <div className="flex justify-between">
@@ -39,8 +39,9 @@ const MeetingCard = ({
           </div>
         </div>
       </article>
+            {!isPreviousMeeting && (
       <article className={cn("flex justify-center relative", {})}>
-        <div className="relative flex w-full max-sm:hidden">
+        <div className="relative  w-[60%] flex  max-sm:hidden">
           {avatarImages.map((img, index) => (
             <Image
               key={index}
@@ -52,13 +53,15 @@ const MeetingCard = ({
               style={{ top: 0, left: index * 28 }}
             />
           ))}
-          <div className="flex-center absolute left-[136px] size-10 rounded-full border-[5px] border-dark-3 bg-dark-4">
+          <div className="flex-center absolute left-[136px] size-10 rounded-full border-[5px] border-dark-3 bg-[#1E2757]">
             +5
           </div>
         </div>
-        {!isPreviousMeeting && (
           <div className="flex gap-2">
-            <Button onClick={handleClick} className="rounded bg-blue-1 px-6">
+            <Button
+              onClick={handleClick}
+              className="rounded bg-[#0E78F9] px-6 cursor-pointer"
+            >
               {buttonIcon1 && (
                 <Image src={buttonIcon1} alt="feature" width={20} height={20} />
               )}
@@ -69,7 +72,7 @@ const MeetingCard = ({
                 navigator.clipboard.writeText(link);
                 toast("Link Copied");
               }}
-              className="bg-dark-4 px-6"
+              className="bg-[#1E2757] px-6 cursor-pointer"
             >
               <Image
                 src="/icons/copy.svg"
@@ -80,8 +83,8 @@ const MeetingCard = ({
               &nbsp; Copy Link
             </Button>
           </div>
-        )}
       </article>
+        )}
     </section>
   );
 };
