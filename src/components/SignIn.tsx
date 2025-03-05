@@ -6,6 +6,7 @@ import { useRouter } from "next/navigation";
 import React, { FormEvent, useState } from "react";
 import { Label } from "./ui/label";
 import { Button } from "./ui/button";
+import { toast } from "sonner";
 
 const SignIn = () => {
   const [data, setData] = useState({
@@ -25,8 +26,11 @@ const SignIn = () => {
       localStorage.setItem("user:token", val.data.data.token);
       localStorage.setItem("user:data", JSON.stringify(val.data.data.user));
       router.push("/");
-    } catch (e) {
-      console.log(e);
+    } catch (error) {
+      console.log(error);
+      toast(
+        error?.response?.data?.message?.message || "Looks like something went wrong."
+      );
     }
   };
   return (
@@ -60,7 +64,7 @@ const SignIn = () => {
             onChange={(e) => setData({ ...data, password: e.target.value })}
           />
         </div>
-        <Button className="w-1/2" type="submit">
+        <Button className="w-1/2 cursor-pointer" type="submit">
           Sign in
         </Button>
       </form>

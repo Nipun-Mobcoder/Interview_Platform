@@ -25,6 +25,8 @@ const MeetingTypeList = () => {
   });
   const [callDetails, setCallDetails] = useState<Call>();
 
+  const meetingLink = `${process.env.NEXT_PUBLIC_BASE_URL}/meeting/${callDetails?.id}`
+
   const createMeeting = async () => {
     if (!user || !client) return;
 
@@ -106,18 +108,18 @@ const MeetingTypeList = () => {
           handleClick={createMeeting}
         >
           <div className="flex flex-col gap-2.5">
-            <label className="text-base font-normal leading-[22.4px] text-sky-2">
+            <label className="text-base font-normal leading-[22.4px] text-[#ECF0FF]">
               Add a description
             </label>
             <Textarea
-              className="border-none bg-dark-3 focus-visible:ring-0 focus-visible:ring-offset-0"
+              className="border-none bg-[#252A41] focus-visible:ring-0 focus-visible:ring-offset-0"
               onChange={(e) =>
                 setValues({ ...values, description: e.target.value })
               }
             />
           </div>
           <div className="flex w-full flex-col gap-2.5">
-            <label className="text-base font-normal leading-[22.4px] text-sky-2">
+            <label className="text-base font-normal leading-[22.4px] text-[#ECF0FF]">
               Select Date and Time
             </label>
             <ReactDatePicker
@@ -128,7 +130,7 @@ const MeetingTypeList = () => {
               timeIntervals={15}
               timeCaption="time"
               dateFormat="MMMM d, yyyy h:mm aa"
-              className="w-full rounded bg-dark-3 p-2 focus:outline-none"
+              className="w-full rounded bg-[#252A41] p-2 focus:outline-none"
             />
           </div>
         </MeetingModal>
@@ -138,7 +140,7 @@ const MeetingTypeList = () => {
           onClose={() => setMeetingState(undefined)}
           title="Meeting Created"
           handleClick={() => {
-            navigator.clipboard.writeText("meetingLink");
+            navigator.clipboard.writeText(meetingLink);
             toast("Link Copied");
           }}
           image={"/icons/checked.svg"}

@@ -8,8 +8,6 @@ import MeetingRoom from "./MeetingRoom";
 import Loader from "./Loader";
 
 const MeetingPage = ({ id }: { id: string }) => {
-  const userDetails = localStorage.getItem("user:data") as string;
-  const user = JSON.parse(userDetails);
   const { call, isCallLoading } = useGetCallById(id);
   const [isSetupComplete, setIsSetupComplete] = useState(false);
 
@@ -19,7 +17,11 @@ const MeetingPage = ({ id }: { id: string }) => {
     <main className="h-screen w-full">
       <StreamCall call={call}>
         <StreamTheme>
-          {!isSetupComplete ? <MeetingSetup /> : <MeetingRoom />}
+          {!isSetupComplete ? (
+            <MeetingSetup setIsSetupComplete={setIsSetupComplete} />
+          ) : (
+            <MeetingRoom />
+          )}
         </StreamTheme>
       </StreamCall>
     </main>

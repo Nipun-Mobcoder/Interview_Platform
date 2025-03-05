@@ -60,7 +60,7 @@ const SignUp = () => {
             onChange={(e) => setData({ ...data, password: e.target.value })}
           />
         </div>
-        <Button className="w-1/2" type="submit">
+        <Button className="w-1/2 cursor-pointer" type="submit">
           Sign in
         </Button>
       </form>
